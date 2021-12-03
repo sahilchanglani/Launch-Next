@@ -7,11 +7,12 @@ import startupRoutes from "./routes/startups.js";
 
 const app = express();
 
-app.use("/startup", startupRoutes);
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+app.use("/startups", startupRoutes);
+
 
 const CONNECTION_URL =
   "mongodb+srv://sahilkc:Sahil%40314@launch-next.ey6ok.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
