@@ -35,7 +35,7 @@ const Form = ({ currentId, setCurrentId }) => {
     e.preventDefault();
 
     if (currentId === 0) {
-      dispatch(submitStartup(startupData));
+      dispatch(createStartup(startupData));
       clear();
     } else {
       dispatch(updateStartup(currentId, startupData));
