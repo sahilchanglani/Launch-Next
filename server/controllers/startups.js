@@ -67,11 +67,24 @@ export const deleteStartup = async (req, res) => {
 export const likeStartup = async (req, res) => {
     const { id } = req.params;
 
+    if (!req.userId) return res.json({ message: "Unauthenticated"});
+
+
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No startup with id: ${id}`);
     
     const startup = await StartupModel.findById(id);
 
-    const updatedStartup = await StartupModel.findByIdAndUpdate(id, { likeCount: startup.likeCount + 1 }, { new: true });
+    const index = startup.likes.findIndex((id) => id===String(req.userId));
+
+    if (index===-1) {
+        //like
+        startup.likes.push(req.userId);
+    } else {
+        //dislike
+        startup.likes = startup.likes.filter((id)=> id!==String(req.userId));
+    }
+
+    const updatedStartup = await StartupModel.findByIdAndUpdate(id, startup, { new: true });
     
     res.json(updatedStartup);
 }
