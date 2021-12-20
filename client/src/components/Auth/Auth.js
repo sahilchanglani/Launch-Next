@@ -14,13 +14,11 @@ const initialState = { firstName: '', lastName: '', email: '', password: '', con
 
 const Auth = () => {
     const classes = useStyles();
-    const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
     const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword) 
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -39,7 +37,6 @@ const Auth = () => {
 
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
-        handleShowPassword(false);
     };
 
     const googleSuccess = async (res) => {
@@ -78,7 +75,7 @@ const Auth = () => {
                             )
                         }
                         <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-                        <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
+                        <Input name="password" label="Password" handleChange={handleChange} type="password" />
                         { isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password" />}
                     </Grid>
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
