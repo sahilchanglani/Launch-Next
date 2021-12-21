@@ -5,6 +5,8 @@ const startupSchema = mongoose.Schema({
     website: String,
     headline: String,
     description: String,
+    creator: String,
+    user: String,
     image: String,
     tags: [String],
     likes: {

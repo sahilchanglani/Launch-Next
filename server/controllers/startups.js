@@ -28,9 +28,9 @@ export const getStartup = async (req, res) => {
 }
 
 export const createStartup = async (req, res) => {
-    const { name, website, headline, description, image, tags} = req.body;
+    const startup = req.body;
 
-    const newStartup = new StartupModel({ name, website, headline, description, image, tags})
+    const newStartup = new StartupModel({ ...startup, creator: req.userId, createdAt: new Date().toISOString() });
 
     try {
         await newStartup.save();
