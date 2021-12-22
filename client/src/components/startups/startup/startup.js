@@ -29,6 +29,9 @@ const Startup = ({ startup, setCurrentId }) => {
     return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
   };
 
+  console.log(`${startup.name} ${user?.result?.googleId}`);
+  console.log(`${startup.name} ${startup?.creator}`);
+
   return (
     <Card className={classes.card}>
       <CardMedia className={classes.media} image={startup.image || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={startup.title} />
@@ -36,7 +39,7 @@ const Startup = ({ startup, setCurrentId }) => {
         <Typography variant="h6">{startup.headline}</Typography>
         <Typography variant="body2">{moment(startup.createdAt).fromNow()}</Typography>
       </div>
-      {user?.result?.googleId===startup?.creator || user?.result?._id===startup?.creator && (
+      {(user?.result?.googleId===startup?.creator || user?.result?._id===startup?.creator) && (
         <div className={classes.overlay2}>
           <Button style={{ color: 'white' }} size="small" onClick={() => setCurrentId(startup._id)}><MoreHorizIcon fontSize="default" /></Button>
         </div>
@@ -52,7 +55,7 @@ const Startup = ({ startup, setCurrentId }) => {
         <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(likeStartup(startup._id))}>
           <Likes />
         </Button>
-        {user?.result?.googleId===startup?.creator || user?.result?._id===startup?.creator && (
+        {(user?.result?.googleId===startup?.creator || user?.result?._id===startup?.creator) && (
           <Button size="small" color="primary" onClick={() => dispatch(deleteStartup(startup._id))}><DeleteIcon fontSize="small" /> Delete</Button>
         )}
         
