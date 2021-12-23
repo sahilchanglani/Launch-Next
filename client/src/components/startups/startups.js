@@ -13,7 +13,7 @@ const Startups = ({ setCurrentId }) => {
     !startups.length ? <CircularProgress /> : (
       <Grid className={classes.container} container alignItems="stretch" spacing={3}>
         {startups.map((startup) => (
-          <Grid key={startup._id} item xs={12} sm={6} md={6}>
+          <Grid key={startup._id} item xs={12} sm={12} md={6} lg={3}>
             <Startup startup={startup} setCurrentId={setCurrentId} />
           </Grid>
         ))}

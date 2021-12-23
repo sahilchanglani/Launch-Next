@@ -34,6 +34,7 @@ const Home = () => {
     const searchStartup = () => {
         if(search.trim() || tags) {
             dispatch(getStartupsBySearch({search, tags: tags.join(',')}));
+            navigate(`/startups/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`)
         } else {
             navigate('/');
         }
