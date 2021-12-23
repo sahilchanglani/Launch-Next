@@ -29,8 +29,6 @@ const Startup = ({ startup, setCurrentId }) => {
     return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
   };
 
-  console.log(`${startup.name} ${user?.result?.googleId}`);
-  console.log(`${startup.name} ${startup?.creator}`);
 
   return (
     <Card className={classes.card}>

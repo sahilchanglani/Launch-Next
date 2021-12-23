@@ -15,6 +15,21 @@ export const getStartups = async (req, res) => {
     }
 }
 
+export const getStartupsBySearch = async (req, res) => {
+    const { searchQuery, tags } = req.query;
+
+    try {
+        const name = new RegExp(searchQuery, "i");
+
+        const startups = await StartupModel.find({ $or: [ { name }, { tags: { $in: tags.split(',') } } ]});
+
+        res.json({ data: startups });
+    } catch (error) {    
+        res.status(404).json({ message: error.message });
+    }
+    
+}
+
 export const getStartup = async (req, res) => { 
     const { id } = req.params;
 

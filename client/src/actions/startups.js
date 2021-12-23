@@ -12,6 +12,16 @@ export const getStartups = () => async (dispatch) => {
   }
 };
 
+export const getStartupsBySearch = (searchQuery) => async (dispatch) => {
+  try {
+    const { data: {data} } = await api.fetchStartupsBySearch(searchQuery);
+
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const createStartup = (startup) => async (dispatch) => {
   try {
     const { data } = await api.createStartup(startup);

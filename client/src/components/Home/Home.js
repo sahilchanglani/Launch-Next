@@ -4,10 +4,10 @@ import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from '@materi
 import { useNavigate, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 
-import { getStartups } from '../../actions/startups';
+import { getStartups, getStartupsBySearch } from '../../actions/startups';
 import Pagination from '../Pagination';
 import Startups from '../Startups/startups';
-import Form from '../Form/form';
+import Form from '../Form/Form';
 
 import useStyles from './styles';
 
@@ -32,8 +32,8 @@ const Home = () => {
     }, [currentId, dispatch]);
 
     const searchStartup = () => {
-        if(search.trim()) {
-            //dispatch -> fetch search startup
+        if(search.trim() || tags) {
+            dispatch(getStartupsBySearch({search, tags: tags.join(',')}));
         } else {
             navigate('/');
         }
