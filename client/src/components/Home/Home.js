@@ -27,10 +27,6 @@ const Home = () => {
     const [tags, setTags] = useState([]);
     // const classes = useStyles();
 
-    useEffect(() => {
-        dispatch(getStartups());
-    }, [currentId, dispatch]);
-
     const searchStartup = () => {
         if(search.trim() || tags) {
             dispatch(getStartupsBySearch({search, tags: tags.join(',')}));
@@ -80,7 +76,7 @@ const Home = () => {
                     </AppBar>
                     <Form currentId={currentId} setCurrentId={setCurrentId} />
                     <Paper elevation={6}>
-                        <Pagination/>                
+                        <Pagination page={page}/>                
                     </Paper>
                 </Grid>
             </Grid>

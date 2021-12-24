@@ -2,9 +2,11 @@ import { FETCH_ALL, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, LIKE } from '../con
 
 import * as api from '../api/index.js';
 
-export const getStartups = () => async (dispatch) => {
+export const getStartups = (page) => async (dispatch) => {
   try {
-    const { data } = await api.fetchStartups();
+    const { data } = await api.fetchStartups(page);
+
+    console.log(data);
 
     dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
