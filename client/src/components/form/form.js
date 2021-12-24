@@ -56,7 +56,7 @@ const Form = ({ currentId, setCurrentId }) => {
         </Typography>
       </Paper>
     ) : (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={6}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <Typography variant="h6">{currentId ? `Editing "${startup.name}"` : 'Submit your startup'}</Typography>
         <TextField name="name" variant="outlined" label="Name" fullWidth value={startupData.name} onChange={handleChange} />

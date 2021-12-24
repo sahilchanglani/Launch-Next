@@ -1,14 +1,16 @@
-import { FETCH_ALL, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_BY_SEARCH, START_LOADING,END_LOADING, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
 
 import * as api from '../api/index.js';
 
 export const getStartups = (page) => async (dispatch) => {
   try {
+    dispatch({ type: START_LOADING });
     const { data } = await api.fetchStartups(page);
 
     console.log(data);
 
     dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error.message);
   }
@@ -16,9 +18,11 @@ export const getStartups = (page) => async (dispatch) => {
 
 export const getStartupsBySearch = (searchQuery) => async (dispatch) => {
   try {
+    dispatch({ type: START_LOADING });
     const { data: {data} } = await api.fetchStartupsBySearch(searchQuery);
 
     dispatch({ type: FETCH_BY_SEARCH, payload: data });
+    dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error);
   }
@@ -26,6 +30,7 @@ export const getStartupsBySearch = (searchQuery) => async (dispatch) => {
 
 export const createStartup = (startup) => async (dispatch) => {
   try {
+    dispatch({ type: START_LOADING });
     const { data } = await api.createStartup(startup);
 
     dispatch({ type: CREATE, payload: data });

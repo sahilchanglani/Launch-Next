@@ -6,11 +6,13 @@ import Startup from './Startup/Startup';
 import useStyles from './styles';
 
 const Startups = ({ setCurrentId }) => {
-  const {startups} = useSelector((state) => state.startups);
+  const { startups, isLoading } = useSelector((state) => state.startups);
   const classes = useStyles();
 
+  if(!startups.length && !isLoading) return 'No startups';
+
   return (
-    !startups?.length ? <CircularProgress /> : (
+    isLoading ? <CircularProgress /> : (
       <Grid className={classes.container} container alignItems="stretch" spacing={3}>
         {startups.map((startup) => (
           <Grid key={startup._id} item xs={12} sm={12} md={6} lg={3}>
