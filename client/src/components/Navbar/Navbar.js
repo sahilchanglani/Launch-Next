@@ -38,7 +38,7 @@ const Navbar = () => {
     return (
         <AppBar position="fixed">
           <Toolbar>
-            <Typography variant="h5" component={Link} to="/startups" className={classes.heading}>
+            <Typography variant="h5" component={Link} to="/" className={classes.heading}>
               <img className={classes.image} src={logo} alt="logo" align="center" height="8%" width="8%" />Launch Next
             </Typography>
             {user? (

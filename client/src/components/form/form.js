@@ -8,7 +8,7 @@ import { createStartup, updateStartup } from '../../actions/startups';
 
 const Form = ({ currentId, setCurrentId }) => {
   const [startupData, setStartupData] = useState({ name: '', website: 'https://', headline: '', description: '', image: '', tags: '' });
-  const startup = useSelector((state) => (currentId ? state.startups.find((message) => message._id === currentId) : null));
+  const startup = useSelector((state) => (currentId ? state.startups.startups.find((message) => message._id === currentId) : null));
   const dispatch = useDispatch();
   const classes = useStyles();
   const location = useLocation();

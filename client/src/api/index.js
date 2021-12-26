@@ -8,8 +8,9 @@ API.interceptors.request.use((req) => {
     }
 
     return req;
-})
+});
 
+export const fetchStartup = (id) => API.get(`/startups/${id}`);
 export const fetchStartups = (page) => API.get(`/startups?page=${page}`);
 export const fetchStartupsBySearch = (searchQuery) => API.get(`/startups/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
 export const createStartup = (newStartup) => API.post('/startups', newStartup);
