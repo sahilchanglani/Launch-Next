@@ -36,7 +36,7 @@ const Startup = () => {
         );
     }
 
-    const recommendedStartups = startups.filter(({_id}) => _id !== startup.id);
+    const recommendedStartups = startups.filter(({_id}) => _id !== startup._id);
 
     const openStartup = (_id) => navigate(`/startups/${_id}`);
 
@@ -51,8 +51,6 @@ const Startup = () => {
               <Typography gutterBottom variant="body1" component="p">Website: <a href="{startup.website}">{startup.website}</a></Typography>
               <Typography variant="h6">Founder: {startup.user}</Typography>
               <Typography variant="body1">{moment(startup.createdAt).fromNow()}</Typography>
-              <Divider style={{ margin: '20px 0' }} />
-              <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
               <Divider style={{ margin: '20px 0' }} />
               <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
               <Divider style={{ margin: '20px 0' }} />
