@@ -7,7 +7,7 @@ import ChipInput from 'material-ui-chip-input';
 import { getStartups, getStartupsBySearch } from '../../actions/startups';
 import Pagination from '../Pagination';
 import Startups from '../Startups/startups';
-import Form from '../Form/Form';
+import Form from '../Form/form';
 
 import useStyles from './styles';
 
@@ -74,12 +74,14 @@ const Home = () => {
                         />
                         <Button onClick={searchStartup} className={classes.searchButton} variant="contained" color="primary">Search</Button>
                     </AppBar>
-                    <Form currentId={currentId} setCurrentId={setCurrentId} />
                     {(!searchQuery && !tags.length) && (
                         <Paper elevation={6} className={classes.pagination}>
                             <Pagination page={page}/>                
                         </Paper>
                     )}
+                    <br/>
+                    <Form currentId={currentId} setCurrentId={setCurrentId} />
+                    
                     
                 </Grid>
             </Grid>

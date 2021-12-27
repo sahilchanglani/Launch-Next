@@ -26,7 +26,7 @@ const Startup = () => {
     
     if (!startup) return null;
     
-    const openStartup = () => navigate(`/startups/${startup._id}`);
+    // const openStartup = () => navigate(`/startups/${startup._id}`);
     
     if (isLoading) {
         return (
@@ -35,6 +35,10 @@ const Startup = () => {
             </Paper>
         );
     }
+
+    const recommendedStartups = startups.filter(({_id}) => _id !== startup.id);
+
+    const openStartup = (_id) => navigate(`/startups/${_id}`);
 
     return (
         <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
@@ -57,6 +61,25 @@ const Startup = () => {
               <img className={classes.media} src={startup.image || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={startup.name} />
             </div>
           </div>
+          <br/>
+          {recommendedStartups.length && (
+
+            <div className={classes.section}>
+            <Typography gutterBottom variant="h5">You might also like:</Typography>
+            <Divider />
+            <div className={classes.recommendedStartups}>
+                {recommendedStartups.map(({ name, headline, description, likes, image, _id }) => (
+                <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openStartup(_id)} key={_id}>
+                <Typography gutterBottom variant="h6">{name}</Typography>
+                    <Typography gutterBottom variant="subtitle2">{headline}</Typography>
+                    <Typography gutterBottom variant="subtitle2">{description}</Typography>
+                <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
+                <img src={image} width="200px" />
+                </div>
+            ))}
+            </div>
+        </div>
+        )}
         
         </Paper>
     );

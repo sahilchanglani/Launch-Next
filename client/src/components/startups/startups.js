@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, CircularProgress } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
-import Startup from './Startup/Startup';
+import Startup from './Startup/startup';
 import useStyles from './styles';
 
 const Startups = ({ setCurrentId }) => {
