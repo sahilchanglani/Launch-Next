@@ -22,7 +22,8 @@ Launch Next is an online platform to register and promote startups. Launch Next 
 - Register Startup
 - Search by tags
 - Search by startup name
-- Edit, delete and like startups.
+- View recommended startups
+- Edit, delete and like startups
 
 
 ## Screenshots
